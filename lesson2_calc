@@ -1,0 +1,55 @@
+import operator
+
+
+def juniorCalc():
+    action = {"+": operator.add, "-": operator.sub, "/": operator.truediv, "*": operator.mul, "**": pow}
+    while True:
+        try:
+            first_num = float(input("Введите первое число: "))
+            second_num = float(input("Введите второе число: "))
+        except ValueError:
+            print("This is not a number. Try again")
+            continue
+        break
+    while True:
+        try:
+            act = input(
+                """Что сделать с этими числами?\n+ сложить\n- вычесть\n/ разделить\n* перемножить\n** возвести в степень\n""")
+            answer = action[act](first_num, second_num)
+        except KeyError:
+            print("Неправильно указанно действие")
+            continue
+        except ZeroDivisionError:
+            print("На 0 делить нельзя")
+            continue
+        break
+    print(f"Ответ - {answer}")
+
+
+def middleCalc():
+    action = {"+": operator.add, "-": operator.sub, "/": operator.truediv, "*": operator.mul, "**": pow}
+    while True:
+        try:
+            first_num = float(input("Введите первое число: "))
+            second_num = float(input("Введите второе число: "))
+            third_num = float(input("Введите третье число: "))
+        except ValueError:
+            print("This is not a number. Try again")
+            continue
+        break
+    while True:
+        try:
+            act1 = input(
+                """Первая операция?\n+ сложить\n- вычесть\n/ разделить\n* перемножить\n** возвести в степень\n""")
+            act2 = input(
+                """Вторая операция?\n+ сложить\n- вычесть\n/ разделить\n* перемножить\n** возвести в степень\n""")
+            answer_first = action[act1](first_num, second_num)
+            answer_final = action[act2](answer_first, third_num)
+        except KeyError:
+            print("Неправильно указанно действие")
+            continue
+        except ZeroDivisionError:
+            print("На 0 делить нельзя")
+            continue
+        break
+    print("Ответ - ", answer_final)
